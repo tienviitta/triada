@@ -1,0 +1,207 @@
+:root {
+  --bg: #f7f5f0;
+  --fg: #1d1c1a;
+  --muted: #6b6760;
+  --panel: #ffffff;
+  --border: #d9d4c9;
+  --wood: #efe6d6;
+  --fret: #a39a8a;
+  --nut: #3b3833;
+  --string: #6f6656;
+  --inlay: #d6cab4;
+  --inv-0: #c2410c;
+  --inv-1: #1d4ed8;
+  --inv-2: #15803d;
+  --dot-text: #ffffff;
+
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161514;
+    --fg: #ece9e3;
+    --muted: #a19c93;
+    --panel: #201f1d;
+    --border: #3a3734;
+    --wood: #2a2622;
+    --fret: #6d665c;
+    --nut: #d8d2c6;
+    --string: #a89e8c;
+    --inlay: #433d36;
+    --inv-0: #fb923c;
+    --inv-1: #60a5fa;
+    --inv-2: #4ade80;
+    --dot-text: #161514;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+h1 {
+  font-size: 1.4rem;
+  font-weight: 650;
+  margin: 20px 0 12px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.control select {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--fg);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  min-width: 8rem;
+}
+
+/* Fretboard */
+.board {
+  overflow-x: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 8px;
+}
+
+.fretboard {
+  display: block;
+  max-width: none;
+}
+
+.wood {
+  fill: var(--wood);
+}
+.fret {
+  stroke: var(--fret);
+  stroke-width: 2;
+}
+.nut {
+  stroke: var(--nut);
+  stroke-width: 6;
+}
+.string {
+  stroke: var(--string);
+}
+.inlay {
+  fill: var(--inlay);
+}
+.fret-number {
+  fill: var(--muted);
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+.voicing {
+  cursor: default;
+  outline: none;
+  transition: opacity 120ms;
+}
+.voicing.inv-0 {
+  --c: var(--inv-0);
+}
+.voicing.inv-1 {
+  --c: var(--inv-1);
+}
+.voicing.inv-2 {
+  --c: var(--inv-2);
+}
+
+.outline {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 26;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.16;
+}
+
+.dot circle {
+  fill: var(--c);
+}
+.dot.role-root circle {
+  stroke: var(--fg);
+  stroke-width: 2.5;
+}
+.dot text {
+  fill: var(--dot-text);
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+/* Hovering or focusing one shape dims the others. */
+.shapes:has(.voicing:hover, .voicing:focus-visible) .voicing:not(:hover, :focus-visible) {
+  opacity: 0.22;
+}
+.voicing:hover .outline,
+.voicing:focus-visible .outline {
+  opacity: 0.35;
+}
+
+.readout {
+  min-height: 1.4em;
+  margin: 10px 2px;
+  color: var(--muted);
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.swatch.inv-0 {
+  background: var(--inv-0);
+}
+.swatch.inv-1 {
+  background: var(--inv-1);
+}
+.swatch.inv-2 {
+  background: var(--inv-2);
+}

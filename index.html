@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Triada · guitar triad shapes</title>
+  </head>
+  <body>
+    <main id="app">
+      <h1 id="title">Triads</h1>
+      <div id="board" class="board"></div>
+      <p id="readout" class="readout" aria-live="polite"></p>
+      <ul class="legend" aria-label="Legend">
+        <li><span class="swatch inv-0"></span>Root position (R in bass)</li>
+        <li><span class="swatch inv-1"></span>1st inversion (3rd in bass)</li>
+        <li><span class="swatch inv-2"></span>2nd inversion (5th in bass)</li>
+      </ul>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
